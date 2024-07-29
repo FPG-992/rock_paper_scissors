@@ -8,22 +8,71 @@
     console.log('Hello World This is the RPS game');
     console.log('Played by console only for now');
 
+    let check=0;
+
     function getComputerChoice(){
         const choices = ['rock', 'paper', 'scissors'];
         const randomNumber = Math.floor(Math.random() * 3);
-        return choices[randomNumber];
+        let computerChoice = choices[randomNumber];
+        console.log('Computer: ' + computerChoice);
+        return computerChoice;
     }
+
     function getHumanChoice(){
-        const humanChoice = prompt('Please enter your choice: rock, paper, or scissors');
+        check=0;
+        let humanChoice = prompt('Please enter your choice: rock, paper, or scissors');
+        humanChoice = humanChoice.toLowerCase();
         if(humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors'){
+            console.log('Human: ' + humanChoice);
+            check = 1;
             return humanChoice;
         } else {
-            console.log('Invalid choice');
+            check = 0;
+            console.log('INVALID CHOICE SHOULD BE ERROR');
         }
     }
-    getHumanChoice();
-    console.log(getComputerChoice());
 
+    let humanScore = 0;
+    let computerScore = 0;
+
+    
+
+    function playRound(humanChoice,computerChoice){
+        if (humanChoice === computerChoice){
+            console.log('It is a tie');
+        } else if (humanChoice ==='rock' && computerChoice ==='scissors'){
+            console.log('Human wins');
+            humanScore++;
+        } else if (humanChoice ==='paper' && computerChoice ==='rock'){
+            console.log('Human wins');
+            humanScore++;
+        } else if (humanChoice ==='scissors' && computerChoice ==='paper'){
+            console.log('Human wins');
+            humanScore++;
+        } else if (check === 0){
+            console.log('Invalid choice by human');
+        }
+        else {
+            console.log('Computer wins');
+            computerScore++;
+        }
+    }
+
+    for (let i=0; i<5; i++){
+        playRound(getHumanChoice(),getComputerChoice());
+        console.log('Human score: ' + humanScore);
+        console.log('Computer score: ' + computerScore);
+        console.log('-------------------');
+    }
+    console.log('=======Game Over========');
+    if (humanScore > computerScore){
+        console.log('Human wins the game');
+    } else if (humanScore < computerScore){
+        console.log('Computer wins the game');
+    } else {
+        console.log('It is a tie game');
+    }
+    console.log('THANKS FOR PLAYING');
 
     </script>
 </body>
