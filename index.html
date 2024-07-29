@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+    <script>
+    console.log('Hello World This is the RPS game');
+    console.log('Played by console only for now');
+
+    function getComputerChoice(){
+        const choices = ['rock', 'paper', 'scissors'];
+        const randomNumber = Math.floor(Math.random() * 3);
+        return choices[randomNumber];
+    }
+    function getHumanChoice(){
+        const humanChoice = prompt('Please enter your choice: rock, paper, or scissors');
+        if(humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors'){
+            return humanChoice;
+        } else {
+            console.log('Invalid choice');
+        }
+    }
+    getHumanChoice();
+    console.log(getComputerChoice());
+
+
+    </script>
+</body>
+</html>
