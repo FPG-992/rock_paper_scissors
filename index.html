@@ -2,13 +2,85 @@
 <html>
 <head>
     <title>Home</title>
+    <style>
+        html,body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <script>
     console.log('Hello World This is the RPS game');
     console.log('Played by console only for now');
 
-    let check=0;
+    //============================== Button Creation ==============================
+    
+    const button = document.createElement('button');
+    button.textContent = 'Rock';
+    button.style.backgroundColor = 'Gray';
+
+    const button2 = document.createElement('button');
+    button2.textContent = 'Paper';
+    button2.style.backgroundColor = 'White';
+
+    const button3 = document.createElement('button');
+    button3.textContent = 'Scissors';
+    button3.style.backgroundColor = 'Blue';
+
+
+    const container = document.createElement('div');
+    container.style.display = 'flex';
+    container.style.flex = 'auto';
+    container.style.justifyContent = 'center';
+    container.style.gap= '20px';
+
+    document.body.appendChild(container);
+
+    container.appendChild(button);
+    container.appendChild(button2);
+    container.appendChild(button3);
+
+    button.addEventListener('click', function(){
+        console.log('Rock');
+        playRound('rock',getComputerChoice());
+    });
+
+    button2.addEventListener('click', function(){
+        console.log('Paper');
+        playRound('paper',getComputerChoice());
+    });
+
+    button3.addEventListener('click', function(){
+        console.log('Scissors');
+        playRound('scissors',getComputerChoice());
+    });
+
+    const scoreBoard = document.createElement('div'); 
+    scoreBoard.style.display = 'flex';
+    scoreBoard.style.justifyContent = 'center';
+    scoreBoard.style.gap = '20px';
+
+    document.body.appendChild(scoreBoard);
+
+    const humanScoreBoard = document.createElement('p');
+    humanScoreBoard.textContent = 'Human: 0';
+
+    const computerScoreBoard = document.createElement('p');
+    computerScoreBoard.textContent = 'Computer: 0';
+
+    scoreBoard.appendChild(humanScoreBoard);
+    scoreBoard.appendChild(computerScoreBoard);
+
+
+
+
+
+    //============================== Button Creation ==============================
+
+    //let check=0;
 
     function getComputerChoice(){
         const choices = ['rock', 'paper', 'scissors'];
@@ -19,15 +91,15 @@
     }
 
     function getHumanChoice(){
-        check=0;
+        //check=0;
         let humanChoice = prompt('Please enter your choice: rock, paper, or scissors');
         humanChoice = humanChoice.toLowerCase();
         if(humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors'){
             console.log('Human: ' + humanChoice);
-            check = 1;
+            //check = 1;
             return humanChoice;
         } else {
-            check = 0;
+            //check = 0;
             console.log('INVALID CHOICE SHOULD BE ERROR');
         }
     }
@@ -49,14 +121,28 @@
         } else if (humanChoice ==='scissors' && computerChoice ==='paper'){
             console.log('Human wins');
             humanScore++;
-        } else if (check === 0){
-            console.log('Invalid choice by human');
-        }
+        } //else if (check === 0){
+            //console.log('Invalid choice by human');
+        //}
         else {
             console.log('Computer wins');
             computerScore++;
         }
+        humanScoreBoard.textContent = 'Human: ' + humanScore;
+        computerScoreBoard.textContent = 'Computer: ' + computerScore;
+        checkWinner();
     }
+
+        function checkWinner(){
+            if (humanScore === 5){
+                alert('Human wins the game');
+            } else if (computerScore === 5){
+                alert('Computer wins the game');
+            }
+            else if (humanScore === 5 && computerScore === 5){
+                alert('It is a tie game');
+            }
+        }
 
   /* removing logic for playing 5 rounds
    for (let i=0; i<5; i++){
